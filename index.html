@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة السعرات الحرارية</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        input, select { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+        button { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>حاسبة السعرات الحرارية الأساسية (BMR)</h1>
+    <form id="bmrForm">
+        <label for="weight">الوزن (كجم):</label>
+        <input type="number" id="weight" required>
+        
+        <label for="height">الطول (سم):</label>
+        <input type="number" id="height" required>
+        
+        <label for="age">العمر (سنوات):</label>
+        <input type="number" id="age" required>
+        
+        <label for="gender">الجنس:</label>
+        <select id="gender" required>
+            <option value="">اختر</option>
+            <option value="male">ذكر</option>
+            <option value="female">أنثى</option>
+        </select>
+        
+        <button type="submit">احسب</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('bmrForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else if (gender === 'female') {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+            
+            document.getElementById('result').textContent = `سعراتك الحرارية الأساسية: ${bmr.toFixed(2)} سعرة حرارية يوميًا.`;
+        });
+    </script>
+</body>
+</html>
