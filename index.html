@@ -17,22 +17,28 @@
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #1b1b1b, #000);
+  /* خلفية متدرجة مع صورة شفافة فوقها */
+  background:
+    linear-gradient(135deg, rgba(12, 35, 12, 0.9), rgba(0,0,0,0.95)),
+    url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
+  padding: 20px;
 }
 
 .container {
-  background: linear-gradient(145deg, #111, #1c1c1c);
+  background: linear-gradient(145deg, #111, #1c1c1c, #122112);
   width: 100%;
   max-width: 450px;
   padding: 25px;
   border-radius: 20px;
-  box-shadow: 0 0 40px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 0 50px rgba(76, 175, 80, 0.8);
   animation: pop 0.8s ease;
   position: relative;
+  z-index: 10;
 }
 
 @keyframes pop {
@@ -53,16 +59,23 @@ h1 {
   font-size: 28px;
 }
 
-/* صورة رياضية حقيقية */
-.gym-img {
-  width: 120px;
-  height: 120px;
+/* الدائرة اللي فوق مع الصورة */
+.gym-img-wrapper {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 20px auto;
   border-radius: 50%;
-  display: block;
-  margin: 0 auto 15px auto;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(76, 175, 80, 0.9);
+  animation: lift 2.5s infinite alternate;
+  border: 4px solid #4caf50;
+}
+
+.gym-img-wrapper img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  box-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
-  animation: lift 2s infinite alternate;
+  display: block;
 }
 
 @keyframes lift {
@@ -74,7 +87,6 @@ h1 {
   }
 }
 
-/* البار المتحرك */
 .bar-container {
   width: 100%;
   height: 10px;
@@ -152,6 +164,15 @@ button:hover {
   font-size: 18px;
   display: none;
   animation: fade 0.6s ease;
+  color: #b6ffb1;
+}
+
+#result img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  box-shadow: 0 0 10px #4caf50;
 }
 
 @keyframes fade {
@@ -185,17 +206,17 @@ button:hover {
 
 <body>
   <div class="container">
-    <!-- صورة رياضية حقيقية -->
-    <img
-      class="gym-img"
-      src="https://cdn.pixabay.com/photo/2017/03/02/20/50/man-2111849_960_720.jpg"
-      alt="OMDA GEM"
-    />
+    <!-- الدائرة مع صورة رياضي حقيقي -->
+    <div class="gym-img-wrapper">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/John_Cena_2018.jpg/440px-John_Cena_2018.jpg"
+        alt="جون سينا"
+        loading="lazy"
+      />
+    </div>
 
-    <!-- اسم الموقع -->
     <h1>OMDA GEM</h1>
 
-    <!-- البار المتحرك -->
     <div class="bar-container">
       <div class="bar"></div>
     </div>
@@ -241,7 +262,7 @@ button:hover {
     </form>
 
     <div id="result">
-      <img src="https://cdn.pixabay.com/photo/2016/03/27/07/32/man-1282232_960_720.jpg" alt="تمرين" style="width: 50px; height: 50px; border-radius: 50%; margin-bottom: 10px;">
+      <img src="https://cdn.pixabay.com/photo/2016/03/27/07/32/man-1282232_960_720.jpg" alt="تمرين" />
       <div id="result-text"></div>
     </div>
 
